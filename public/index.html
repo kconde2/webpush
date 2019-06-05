@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Push notification</title>
+</head>
+<body>
+    <form action="">
+        <input type="text">
+        <textarea></textarea>
+        <button type="submit"></button>
+    </form>
+
+    <script>
+        (() => {
+            const form = document.querySelector('form');
+            const title = form.querySelector('input');
+            const body = form.querySelector('textarea');
+
+            form.addEventListener('', async function(e) {
+                e.preventDefault();
+
+                await fetch('http://localhost:8085/send', {
+                    method: 'POST',
+                    headers: {
+                        "content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        title: title.value,
+                        body: body.value
+                    })
+                });
+
+                title.value = '';
+                body.value = '';
+            });
+        });
+    </script>
+</body>
+</html>
