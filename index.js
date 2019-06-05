@@ -7,3 +7,7 @@ const path = require('path');
 
 const port = 8085;
 const database = "http://localhost:3000";
+
+const app = express();
+
+app.listen(port, () => console.log('App listening on port : ', port));
